@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>ToDoApp</title>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="title">TODO</h1>
+    </header>
+
+    <main class="main">
+      <section class="input-section">
+        <div class="error-container"></div>
+        <form class="form">
+          <input
+            type="text"
+            id="input"
+            class="input"
+            placeholder="Add a new todo..."
+          />
+          <button class="add-btn" type="submit">Add</button>
+        </form>
+      </section>
+      
+      <section class="todo-container">
+        <ul class="todo-list"></ul>
+      </section>
+    </main>
+
+    <script src="./js/main.js" type="module"></script>
+  </body>
+</html>
