@@ -16,24 +16,6 @@ const todoList = document.querySelector('.todo-list')
 let id = 0
 let items = []
 
-const initialRender = () => {
-  const localStorageValue = localStorageValues(true, 'todoList-vanilla')
-
-  if (localStorageValue) {
-    localStorageValue.map((todo) => (id = todo.id))
-    items = localStorageValue
-
-    createAndAppendButton(
-      main,
-      'Delete all todos',
-      'class',
-      'delete-all-button',
-      deleteAllTodos
-    )
-    renderTodos()
-  }
-}
-
 const renderTodos = () => {
   todoContainer.style.display = 'block'
   todoList.innerHTML = ''
@@ -48,13 +30,7 @@ const renderTodos = () => {
       `item-${id} todo-item`
     )
 
-    createAndAppendElement(
-      todoItem,
-      'p',
-      todo,
-      'class',
-      `item-content`
-    )
+    createAndAppendElement(todoItem, 'p', todo, 'class', `item-content`)
 
     createAndAppendButton(
       todoItem,
@@ -120,7 +96,24 @@ const deleteAllTodos = () => {
   todoContainer.style.display = 'none'
 }
 
-initialRender()
+;(function () {
+  const localStorageValue = localStorageValues(true, 'todoList-vanilla')
+
+  if (localStorageValue) {
+    localStorageValue.map((todo) => (id = todo.id))
+    items = localStorageValue
+
+    createAndAppendButton(
+      main,
+      'Delete all todos',
+      'class',
+      'delete-all-button',
+      deleteAllTodos
+    )
+    renderTodos()
+  }
+})()
+
 addBtn.addEventListener('click', addTodo)
 input.addEventListener('input', function () {
   emptyInput(input.value, inputSection, [input, addBtn])

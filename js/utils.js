@@ -14,8 +14,6 @@ export const createAndAppendButton = (
   }
 
   parent.appendChild(button)
-
-  return button
 }
 
 export const createAndAppendElement = (
@@ -36,6 +34,9 @@ export const createAndAppendElement = (
 
 export const emptyInput = (inputValue, parent, children) => {
   const errorMessage = document.querySelector('.error-msg')
+  children.map((child) => {
+    if (child.tagName === 'INPUT') child.focus()
+  })
 
   if (!inputValue && !errorMessage) {
     children.map((child) => child.classList.add('error'))
@@ -46,13 +47,11 @@ export const emptyInput = (inputValue, parent, children) => {
       'class',
       'error-msg'
     )
-    return
   }
 
   if (inputValue && errorMessage) {
     children.map((child) => child.classList.remove('error'))
     removeElement(parent, '.error-msg')
-    return
   }
 }
 
@@ -65,6 +64,4 @@ export const localStorageValues = (hasLocalStorageValues, key, value) => {
 export const removeElement = (parent, selector, element) => {
   const child = document.querySelector(selector)
   parent.removeChild(element || child)
-
-  return child
 }
